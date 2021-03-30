@@ -24,3 +24,32 @@ Xavier El Chantiry:
 I worked on the following tasks:
 1. <Implimented passport> - this allowed us to have local login(userContoller, userModel and other etails).
 2. <debugging locallogin> - had to make locallogin work.
+
+
+--------------------------------------------------------------------------------
+
+March 30th (Second Sprint Complete)
+Raihan Kheraj
+I worked on the following tasks:
+1. <Weather API function> - Fetch the current weather from API
+2. <Implemented central database> - worked as a group on this task 
+3. <Updated local login> - Working on giving a friendly message to user if not a logged in user, instead of ugly error that is coming right now -- STILL IN PROGRESS
+
+Bradley Gee:
+I worked on the following tasks:
+1. <Debugged database> - changed the program to run on one database, and helped debugged it
+2. <Weather API function> - helped debug weather API
+3. <Modified index.html> - changed things in index.html
+
+Sahil Singh:
+I worked on the following tasks:
+1. <Unified Databases> - Used to be 2 databases, now the program only runs on one database
+2. <Made Reminder Dynamic> - Reminder only worked for cindy, now it works for all users
+3. <Impletemented Weather API> - Used the require library to get JSON information from api, then we push it to the website
+
+Xavier El Chantiry:
+I worked on the following tasks:
+1. <Weather API funtion> - trouble shooted API
+2. <Fixed Database> - made database work with login
+3. <Made reminders user sensitive> - made reminders bound to users
+4. <Modified index.html> - changed the 3 reviews and made text shorter

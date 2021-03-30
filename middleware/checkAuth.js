@@ -6,10 +6,9 @@ module.exports = {
       res.redirect("/login");
     },
     forwardAuthenticated: function (req, res, next) {
-      if (!req.isAuthenticated()) {
+      if (! req.isAuthenticated()) {
         return next();
       }
       res.redirect("/reminders");
     },
   };
-  
