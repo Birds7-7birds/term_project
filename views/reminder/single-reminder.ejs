@@ -3,15 +3,45 @@
 
     <ul class="list-group">
       <li class="list-group-item">
-        <h3><strong><%= reminderItem.title %>: </strong></h3>
-        <h4><%= reminderItem.description %></h4>
-        <h4>Completed:
+        <h3><strong><%= reminderItem.title %> </strong></h3>
+        <h4> <em><%= reminderItem.description %></em> </h4>
+        
+        <% if (reminderItem.date.length != 0) { %>
+          <h4 class="reminderLight">Date: <span class="reminderDark"><%= reminderItem.date %></span> </h4>
+        <% } else { %>
+          <h4 class="reminderLight">Date: <span class="reminderDark">No Specified Date</span></h4>
+        <% } %>
+
+        <h4 class="reminderLight">Completed:  
+          <span class="reminderDark">
           <% if (reminderItem.completed == true) { %>
             <span class="label label-success">True</span>
           <% } else if (reminderItem.completed == false) { %>
             <span class="label label-danger">False</span>
           <% } %>
+          </span>
         </h4>
+
+        <!-- for tags-->
+        <% if (reminderItem.tags != undefined) { %>
+          <% if (reminderItem.tags.length == 1 && reminderItem.tags[0] == "") { %>
+          <% } else { %>
+            <h4 class="reminderLight">Tags: <span class="reminderDark"><%= reminderItem.tags %></span> </h4>
+          <% } %>
+        <% } %>
+
+        <!-- for subtasks, this only works of there are subtasks specified-->
+        <% if (reminderItem.subtask != undefined) { %>
+          <% if (reminderItem.subtask.length == 1 && reminderItem.subtask[0] == "") { %>
+          <% } else { %>
+            <h4>Subtasks:</h4>
+            <ul>
+              <% reminderItem.subtask.forEach(function (subTaskItem) { %>
+                <li><%= subTaskItem %></li>
+              <% }) %>
+            </ul>
+          <% } %>
+        <% } %>
 
         <a class="btn btn-warning" href=<%= "/reminder/" + reminderItem.id + "/edit" %>>Edit</a>
 

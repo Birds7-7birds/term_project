@@ -2,12 +2,9 @@ let database = require("../database");
 let request = require('request');
 const key = '4f5b9936701e58d475a62473c9b6352b';
 const location = 'Vancouver,CA';
-// if(key=='') document.getElementById('temp').innerHTML = ('Remember to add your api key!');
-// quick edit to make user dynamic use session id's
 
 let remindersController = {
   list: (req, res) => {
-    remUser = req.user;
 
     const URL = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=' + key;
     request({
@@ -21,42 +18,46 @@ let remindersController = {
       let celcius = Math.round(parseFloat(data.main.temp)-273.15);
       let description = data.weather[0].description;
 
-      res.render("reminder/index", { reminders: remUser.reminders, weathName: weatherName, weathCel: celcius, weathDesc: description });
+      res.render("reminder/index", { reminders: req.user.reminders, weathName: weatherName, weathCel: celcius, weathDesc: description });
     });
   },
 
   new: (req, res) => {
-    remUser = req.user;
     res.render("reminder/create");
   },
 
   listOne: (req, res) => {
     let reminderToFind = req.params.id;
-    let searchResult = remUser.reminders.find(function (reminder) {
+    let searchResult = req.user.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
     if (searchResult != undefined) {
       res.render("reminder/single-reminder", { reminderItem: searchResult });
     } else {
-      res.render("reminder/index", { reminders: remUser.reminders });
+      res.render("reminder/index", { 
+        user: req.user,
+        reminders: req.user.reminders });
     }
   },
 
   create: (req, res) => {
     let reminder = {
-      id: remUser.reminders.length + 1,
+      id: req.user.reminders.length + 1,
       title: req.body.title,
       description: req.body.description,
+      subtask: req.body.subtask.split(","),
+      tags: req.body.tags.split(","),
       completed: false,
+      date: req.body.date.replace("T", " ")
     };
-    remUser.reminders.push(reminder);
-    console.log(remUser.reminders);
+    req.user.reminders.push(reminder);
+    console.log(req.user.reminders);
     res.redirect("/reminders");
   },
 
   edit: (req, res) => {
     let reminderToFind = req.params.id;
-    let searchResult = remUser.reminders.find(function (reminder) {
+    let searchResult = req.user.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
     res.render("reminder/edit", { reminderItem: searchResult });
@@ -66,20 +67,24 @@ let remindersController = {
     // implement this code
     let updatedRem = []
     let reminderToUpdate = req.params.id;
+    console.log(reminderToUpdate);
     let truthValue = null;
     if (req.body.completed == 'true') {
       truthValue = true
-    }
-    else {
+    } else {
       truthValue = false
     }
-    for (const reminder of remUser.reminders) {
+    for (const reminder of req.user.reminders) {
       if (reminder.id == reminderToUpdate){
+        console.log(reminder.id);
         let newReminder = {
         id: req.params.id,
         title: req.body.title,
         description: req.body.description,
+        subtask: req.body.subtask.split(","),
+        tags: req.body.tags.split(","),
         completed: truthValue,
+        date: req.body.date.replace("T", " ")
         };
         updatedRem.push(newReminder);
 
@@ -88,8 +93,8 @@ let remindersController = {
       }
     }
     //spread operator - taking all of remsFiltered and making sure database does not get over written
-    remUser.reminders = [...updatedRem];
-    console.log(remUser.reminders);
+    req.user.reminders = [...updatedRem];
+    console.log(req.user.reminders);
     res.redirect("/reminders");
   
   },
@@ -97,17 +102,17 @@ let remindersController = {
   delete: (req, res) => {
     // Implement this code
     let reminderToDel = req.params.id;
-    // let searchResult = remUser.reminders.find(function (reminder) {
+    // let searchResult = req.user.find(function (reminder) {
     //   return reminder.id == reminderToFind;
     // });
-    let remsFiltered = remUser.reminders.filter(function (reminder){
+    let remsFiltered = req.user.reminders.filter(function (reminder){
       if (reminder.id != reminderToDel){
         return reminder
       }
     });
     //spread operator - taking all of remsFiltered and making sure database does not get over written
-    remUser.reminders = [...remsFiltered];
-    console.log(remUser.reminders);
+    req.user.reminders = [...remsFiltered];
+    console.log(req.user.reminders);
     res.redirect("/reminders");
   
   },

@@ -134,3 +134,11 @@ footer.footer {
   margin-bottom: 10px;
   margin-top: 10px;
 }
+
+.reminderLight {
+  color: crimson;
+}
+
+.reminderDark {
+  color: black;
+}

@@ -14,11 +14,33 @@
           <span class="badge badge-danger">False</span>
         <% } %>
         <a class="pull-right" href=<%= "/reminder/" + reminderItem.id %>>View</a>
+
+         <!-- for tags-->
+         <% if (reminderItem.tags != undefined) { %>
+          <% if (reminderItem.tags.length == 1 && reminderItem.tags[0] == "") { %>
+          <% } else { %>
+            <h6>Tags: <%= reminderItem.tags %></h6>
+          <% } %>
+        <% } %>
+
+        <!-- for subtasks, this only works of there are subtasks specified-->
+        <% if (reminderItem.subtask != undefined) { %>
+          <% if (reminderItem.subtask.length == 1 && reminderItem.subtask[0] == "") { %>
+          <% } else { %>
+            <ul>
+              <% reminderItem.subtask.forEach(function (subTaskItem) { %>
+                <li><%= subTaskItem %></li>
+              <% }) %>
+            </ul>
+          <% } %>
+        <% } %>
+
       </li>
     <% }) %>
   <% } else { %>
     <li class="list-group-item">You have no reminders! Feel free to create one </li>
   <% }; %>
+  <!-- Using the weather API to show weather -->
   <br><br>
   <h2><%= weathName %></h1>
   <h4><%= weathDesc %></h3>

@@ -53,3 +53,30 @@ I worked on the following tasks:
 2. <Fixed Database> - made database work with login
 3. <Made reminders user sensitive> - made reminders bound to users
 4. <Modified index.html> - changed the 3 reviews and made text shorter
+
+
+--------------------------------------------------------------------------------
+
+April 5th (Third Sprint Complete)
+Raihan Kheraj
+I worked on the following tasks:
+1. <Added tags to reminder app> - debugged to view of tags for users and how users can add tags
+2. <Added date to reminder app> - added datetime local to edit.ejs input so user can choose time/date
+resource: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local
+3. <Debugged edit and view funcitonality> - Introducing tags, date and subtasks caused bugs with edit/delete/singleview that had to be fixed before moving forward
+
+Bradley Gee:
+I worked on the following tasks:
+1. <trouble shoot> - helped troubleshoot
+
+Sahil Singh:
+I worked on the following tasks:
+1. <Added Subtask Functionality> - Give the user the ability to add subtasks to the project
+2. <Added Tags Functionality> - Give the user the ability to add tags to the project
+3. <Make Tags and Subtask Dynamic> - Make it so that Tags and Subtasks can be edited and are specific to the user
+
+Xavier El Chantiry:
+I worked on the following tasks:
+1. <Troubleshot Subtasks> - made it so that subtasks displayed nice, without bugs
+2. <Troubleshot Error from last sprint> - corrected errors created from change in our database
+3. <Added Tags funtionality> - made tags nicer and exist
