@@ -5,8 +5,9 @@
       <li class="list-group-item">
         <h3><strong><%= reminderItem.title %> </strong></h3>
         <h4> <em><%= reminderItem.description %></em> </h4>
-        
-        <% if (reminderItem.date.length != 0) { %>
+
+
+        <% if ( reminderItem.date != undefined && reminderItem.date.length != 0) { %>
           <h4 class="reminderLight">Date: <span class="reminderDark"><%= reminderItem.date %></span> </h4>
         <% } else { %>
           <h4 class="reminderLight">Date: <span class="reminderDark">No Specified Date</span></h4>

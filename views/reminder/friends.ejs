@@ -1,0 +1,13 @@
+<div class="container">
+    <form action="/reminder/addFriends" method="POST">
+        <h3>Add Your Friends!</h3>
+        <h6><em>Check your friend's boxes to add them as your friend </em></h6>
+        <br>
+        <% friendList.forEach(function (friendItem) { %>
+            <input type="checkbox" name="<%= friendItem.id %>" id="<%= friendItem.id %>">
+            <label for="friend<%= friendItem.id %>" name="friendItem"><%= friendItem.name %></label><br>
+          <% }) %>
+          <br>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>

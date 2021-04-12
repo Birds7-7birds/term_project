@@ -21,6 +21,7 @@
     "express-server": "^0.7.0",
     "method-override": "^2.3.7",
     "mongoose": "^4.7.7",
+    "node-fetch": "^2.6.1",
     "nodemon": "^1.19.4",
     "passport-local": "^1.0.0"
   }

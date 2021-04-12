@@ -34,6 +34,7 @@ I worked on the following tasks:
 1. <Weather API function> - Fetch the current weather from API
 2. <Implemented central database> - worked as a group on this task 
 3. <Updated local login> - Working on giving a friendly message to user if not a logged in user, instead of ugly error that is coming right now -- STILL IN PROGRESS
+4. <Implemented Authentication> Users can only see, delete, and edit their own reminders
 
 Bradley Gee:
 I worked on the following tasks:
@@ -64,10 +65,18 @@ I worked on the following tasks:
 2. <Added date to reminder app> - added datetime local to edit.ejs input so user can choose time/date
 resource: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local
 3. <Debugged edit and view funcitonality> - Introducing tags, date and subtasks caused bugs with edit/delete/singleview that had to be fixed before moving forward
+4. <worked on edit.ejs, index.ejs, create.ejs.> Added tags, date and subtasks code
+5. <Added search bar> Added search bar into index.ejs but no functionality behind it
+6. <Fixed register webpage> Users can now register for the Reminder app by clicking a button on the index.html page. Their data will be saved and they will be able to log into the app
+7. <Helped implement friends> Users have list of friends that they have chosen to be friends with. Friends can see other friend's reminders
+8. <Debug authcontroller> Ensure users cannot register with the same email address as someone already in the database
+8. <Implement Add friends feature> User can add friends and their reminders to their own
+9. <Implemented Searchbar> Created and debugged search bar to filter through titles of user reminders and return matching reminders to index.ejs
 
 Bradley Gee:
 I worked on the following tasks:
 1. <trouble shoot> - helped troubleshoot
+2. <implemented the register> worked on signing up and adding to the database
 
 Sahil Singh:
 I worked on the following tasks:
@@ -80,3 +89,8 @@ I worked on the following tasks:
 1. <Troubleshot Subtasks> - made it so that subtasks displayed nice, without bugs
 2. <Troubleshot Error from last sprint> - corrected errors created from change in our database
 3. <Added Tags funtionality> - made tags nicer and exist
+4. <Edited index.html> - made it look nicer and be more relivant
+4. <Helped Implement friends> - got the ejs file working with the length of users and made it display nicely
+5. <Fixed Register page.> - made it so that it routes back upon failure to register, also made it add the new person to database.
+6. <Fixed errors created from last sprint> -  fixed a few small things that came up while testing
+7. <Debugged in class> - debuged with group during talk with Armaan

@@ -35,21 +35,33 @@ app.set("view engine", "ejs");
 
 // Routes start here
 
-app.get("/reminders", reminderController.list);
+app.get("/reminders", ensureAuthenticated, reminderController.list);
 
-app.get("/reminder/new", reminderController.new);
+app.get("/reminders/search", ensureAuthenticated, reminderController.searchBar);
 
-app.get("/reminder/:id", reminderController.listOne);
 
-app.get("/reminder/:id/edit", reminderController.edit);
 
-app.post("/reminder/", reminderController.create);
+
+app.get("/reminder/new", ensureAuthenticated, reminderController.new);
+
+app.get("/reminder/friends", ensureAuthenticated, reminderController.friends);
+
+
+app.post("/reminder/addFriends", ensureAuthenticated, reminderController.addFriends);
+
+app.get("/reminder/:id", ensureAuthenticated, reminderController.listOne);
+
+app.get("/reminder/:id/edit", ensureAuthenticated, reminderController.edit);
+
+app.post("/reminder/", ensureAuthenticated,  reminderController.create);
 
 // Implement this yourself
-app.post("/reminder/update/:id", reminderController.update);
+app.post("/reminder/update/:id", ensureAuthenticated, reminderController.update);
 
 // Implement this yourself
-app.post("/reminder/delete/:id", reminderController.delete);
+app.post("/reminder/delete/:id", ensureAuthenticated, reminderController.delete);
+
+// app.get("/reminders/search?:search", ensureAuthenticated, reminderController.searchReminders);
 
 // Fix this to work with passport! The registration does not need to work, you can use the fake database for this.
 app.get("/register", authController.register);

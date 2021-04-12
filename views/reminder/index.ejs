@@ -1,6 +1,12 @@
 <div class="container">
   <h1 class="page-header">Reminders</h1>
 
+  <form action="/reminders/search" method="GET">
+    <span><input type="text" name="search" id="search" placeholder="Search for reminders" class="form-control" />
+    <button class="btn btn-primary btn-sm btn-block" type="submit">Search</button></span>
+  </form>
+
+<br>
 <ul class="list-group">
   <% if (reminders.length != 0) { %>
     <% reminders.forEach(function (reminderItem) { %>
@@ -37,9 +43,63 @@
 
       </li>
     <% }) %>
+
   <% } else { %>
     <li class="list-group-item">You have no reminders! Feel free to create one </li>
   <% }; %>
+
+  <!-- for friend Reminders -->
+  <% if (friendReminders.length != 0) { %>
+
+    <% friendReminders.forEach(function (reminderItem) { %>
+      <li class="list-group-item">
+        <strong><%= reminderItem.title %>: </strong>
+        <%= reminderItem.description %>
+        || Completed:
+        <% if (reminderItem.completed == true) { %>
+          <span class="badge badge-success">True</span>
+        <% } else if (reminderItem.completed == false) { %>
+          <span class="badge badge-danger">False</span>
+        <% } %>
+        <a class="pull-right" href=<%= "/reminder/" + reminderItem.id %>>View</a>
+
+         <!-- for tags-->
+         <% if (reminderItem.tags != undefined) { %>
+          <% if (reminderItem.tags.length == 1 && reminderItem.tags[0] == "") { %>
+          <% } else { %>
+            <h6>Tags: <%= reminderItem.tags %></h6>
+          <% } %>
+        <% } %>
+
+        <!-- for subtasks, this only works of there are subtasks specified-->
+        <% if (reminderItem.subtask != undefined) { %>
+          <% if (reminderItem.subtask.length == 1 && reminderItem.subtask[0] == "") { %>
+          <% } else { %>
+            <ul>
+              <% reminderItem.subtask.forEach(function (subTaskItem) { %>
+                <li><%= subTaskItem %></li>
+              <% }) %>
+            </ul>
+          <% } %>
+        <% } %>
+
+      </li>
+    <% }) %>
+
+  <% } %>
+
+
+  <% if (friends.length != 0) { %>
+    <br>
+    <h5>Your Friends:</h5>
+    <% friends.forEach(function (friend) { %>
+      <%= friend %>
+    <% }) %>
+
+  <% } else { %>
+    <br>
+    <h5>Try adding some friends!</h5>
+  <% } %>
   <!-- Using the weather API to show weather -->
   <br><br>
   <h2><%= weathName %></h1>
