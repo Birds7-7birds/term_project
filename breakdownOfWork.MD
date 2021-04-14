@@ -65,24 +65,34 @@ I worked on the following tasks:
 2. <Added date to reminder app> - added datetime local to edit.ejs input so user can choose time/date
 resource: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local
 3. <Debugged edit and view funcitonality> - Introducing tags, date and subtasks caused bugs with edit/delete/singleview that had to be fixed before moving forward
-4. <worked on edit.ejs, index.ejs, create.ejs.> Added tags, date and subtasks code
-5. <Added search bar> Added search bar into index.ejs but no functionality behind it
-6. <Fixed register webpage> Users can now register for the Reminder app by clicking a button on the index.html page. Their data will be saved and they will be able to log into the app
-7. <Helped implement friends> Users have list of friends that they have chosen to be friends with. Friends can see other friend's reminders
-8. <Debug authcontroller> Ensure users cannot register with the same email address as someone already in the database
-8. <Implement Add friends feature> User can add friends and their reminders to their own
-9. <Implemented Searchbar> Created and debugged search bar to filter through titles of user reminders and return matching reminders to index.ejs
+4. <worked on edit.ejs, index.ejs, create.ejs.> - Added tags, date and subtasks code
+5. <Added search bar> - Added search bar into index.ejs but no functionality behind it
+6. <Fixed register webpage> - Users can now register for the Reminder app by clicking a button on the index.html page. Their data will be saved and they will be able to log into the app
+7. <Helped implement friends> - Users have list of friends that they have chosen to be friends with. Friends can see other friend's reminders
+8. <Debug authcontroller> - Ensure users cannot register with the same email address as someone already in the database
+8. <Implement Add friends feature> - User can add friends and their reminders to their own
+9. <Implemented + debugged Searchbar> - Created and debugged search bar to filter through titles of user reminders and return matching reminders to index.ejs
+10. <Implemented Logout button> - Added logout button in navbar.ejs to delete the current user's session
 
 Bradley Gee:
 I worked on the following tasks:
 1. <trouble shoot> - helped troubleshoot
 2. <implemented the register> worked on signing up and adding to the database
+3. <worked on logout> help implement the logout and added the button for logout in navbar 
+resources: http://www.passportjs.org/docs/logout/
 
 Sahil Singh:
 I worked on the following tasks:
 1. <Added Subtask Functionality> - Give the user the ability to add subtasks to the project
 2. <Added Tags Functionality> - Give the user the ability to add tags to the project
 3. <Make Tags and Subtask Dynamic> - Make it so that Tags and Subtasks can be edited and are specific to the user
+4. <debugged friend reminders> - fixed the logic programming of showing friends
+5. <debugged search bar> - made it so that search bar shows correct reminders
+6. <fixed subtasks> - fixed subtasks after showing friends
+7. <fixed search functionality> - Search used to not include friend reminders, now it does
+8. <edited index.ejs> - added some conditional statements for search menu and weather to show them correctly
+9. <edited friends.ejs> - made it so currently added friends automatically checks the checkbox
+10. <fixed registring user> - no reminders error showed up while registring the user, now it is fixed
 
 Xavier El Chantiry:
 I worked on the following tasks:
@@ -94,3 +104,6 @@ I worked on the following tasks:
 5. <Fixed Register page.> - made it so that it routes back upon failure to register, also made it add the new person to database.
 6. <Fixed errors created from last sprint> -  fixed a few small things that came up while testing
 7. <Debugged in class> - debuged with group during talk with Armaan
+8. <debugged friends> - got friends working so there would be no dupilcation
+9. <modified how some aspects on site look> - for example searchbar look and index changes
+10. <helpped with logout> - helped with implimenting logout

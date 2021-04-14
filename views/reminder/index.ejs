@@ -102,10 +102,11 @@
   <% } %>
   <!-- Using the weather API to show weather -->
   <br><br>
-  <h2><%= weathName %></h1>
-  <h4><%= weathDesc %></h3>
-  <br>
-  <h3><%= weathCel %>°</h2>
+  <% if (weathName != "") { %>
+    <h1>Weather:</h1>
+    <h2><%= weathName %></h1>
+    <h4><%= weathDesc %></h3>
+    <h4><%= weathCel %>°</h4>
+  <% } %>
 </ul>
-
 </div>

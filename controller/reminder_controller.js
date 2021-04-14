@@ -6,7 +6,8 @@ const location = 'Vancouver,CA';
 
 let remindersController = {
   list: (req, res) => {
-
+    let userfriends = req.user.friends;
+    
     const URL = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=' + key;
     request({
       headers: {},
@@ -14,31 +15,18 @@ let remindersController = {
       method: 'GET',
       }, (err, response, body) => {
       const data = JSON.parse(body);
-      // console.log(data);
       let weatherName = data.name
       let celcius = Math.round(parseFloat(data.main.temp)-273.15);
       let description = data.weather[0].description;
-      let userfriends = req.user.friends;
-
-      if (req.user.friends != undefined) {
-        res.render("reminder/index", { 
-          reminders: req.user.reminders, 
-          friendReminders: req.user.friendReminders, 
-          weathName: weatherName, 
-          weathCel: celcius, 
-          weathDesc: description,
-          friends: userfriends
-          });
-
-      } else {
-        res.render("reminder/index", { 
-          reminders: req.user.reminders, 
-          weathName: weatherName, 
-          weathCel: celcius, 
-          weathDesc: description, 
-          friends: userfriends
-        });
-      }
+      
+      res.render("reminder/index", {
+        reminders: req.user.reminders, 
+        friendReminders: req.user.friendReminders, 
+        weathName: weatherName, 
+        weathCel: celcius, 
+        weathDesc: description,
+        friends: userfriends
+      });
     });
   },
 
@@ -49,8 +37,8 @@ let remindersController = {
         listOfFriends.push({name:userdata.name, id:userdata.id})
       };
     });
-    // console.log(listOfFriends)
-    res.render("reminder/friends", {friendList: listOfFriends});
+    currentFriends = req.user.friends
+    res.render("reminder/friends", {friendList: listOfFriends, currFriends: currentFriends});
   },
 
   addFriends: (req, res) => {
@@ -132,21 +120,29 @@ let remindersController = {
 
   searchBar: (req, res) => {
     let matchingReminders = []
+    let allReminders = req.user.reminders
     let searchToken = req.query.search;
     let amigos = req.user.friends;
 
     console.log(`DEBUG: userSearchTerm is: ${searchToken}`);
 
-    for (let i = 0; i < req.user.reminders.length; i++) {
-        // if substring found
-        if (req.user.reminders[i].title.includes(searchToken)) {
-          matchingReminders.push(req.user.reminders[i]);
-        }
-    }
+    let amigoReminders = req.user.friendReminders
+    amigoReminders.forEach( function (amigoReminder) {
+      allReminders.push(amigoReminder)
+    });
+
+    for (let i = 0; i < allReminders.length; i++) {
+      // if substring found
+      if (allReminders[i].title.includes(searchToken)) {
+        matchingReminders.push(allReminders[i]);
+      }
+  }
+
     res.render("reminder/index", {
         user: req.user,
         reminders: matchingReminders,
-        friendReminders: req.user.friends,
+        friendReminders: [],
+        friends: req.user.friends,
         weathName: "", 
         weathCel: "", 
         weathDesc: "",
@@ -163,7 +159,6 @@ let remindersController = {
   },
 
   update: (req, res) => {
-    // implement this code
     let updatedRem = []
     let reminderToUpdate = req.params.id;
     console.log(reminderToUpdate);
@@ -198,11 +193,7 @@ let remindersController = {
   },
 
   delete: (req, res) => {
-    // Implement this code
     let reminderToDel = req.params.id;
-    // let searchResult = req.user.find(function (reminder) {
-    //   return reminder.id == reminderToFind;
-    // });
     let remsFiltered = req.user.reminders.filter(function (reminder){
       if (reminder.id != reminderToDel){
         return reminder

@@ -37,6 +37,7 @@ let authController = {
       password: req.body.password,
       reminders: [],
       friends: [],
+      friendReminders: [],
     };
     //push new user to database
     let flag = 0;
